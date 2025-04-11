@@ -44,7 +44,7 @@ const AddNote = () => {
   return (
     <div className="page-container">
       <header className="navbar">
-        <div className="logo">💌 Unfiltered</div>
+       <Link to="/" className="logo">💌 Unfiltered</Link>
 
         <div
           className={`hamburger ${menuOpen ? "open" : ""}`}
