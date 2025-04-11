@@ -5,6 +5,7 @@ import "./HomePage.css";
 const HomePage = () => {
   const [searchName, setSearchName] = useState("");
   const [notes, setNotes] = useState([]);
+  const [message, setMessage] = useState(""); // New state for feedback messages
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -13,9 +14,21 @@ const HomePage = () => {
   }, [darkMode]);
 
   const searchNotes = async () => {
-    const response = await fetch(`https://unfilteredbackend-dfeg.onrender.com/api/notes/${searchName}`);
-    const data = await response.json();
-    setNotes(data);
+    if (searchName.trim() === "") {
+      setNotes([]);
+      setMessage("⚠️ Please enter a name to search.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://unfilteredbackend-dfeg.onrender.com/api/notes/${searchName}`);
+      const data = await response.json();
+      setNotes(data);
+      setMessage(data.length === 0 ? "😕 No notes found for this name." : "");
+    } catch (error) {
+      setNotes([]);
+      setMessage("🚫 Something went wrong. Please try again.");
+    }
   };
 
   const getPastelColor = (key) => {
@@ -27,7 +40,7 @@ const HomePage = () => {
   return (
     <>
       <header className="navbar">
-      <Link to="/" className="logo">💌 Unfiltered</Link>
+        <Link to="/" className="logo">💌 Unfiltered</Link>
         <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
           <span></span><span></span><span></span>
         </div>
@@ -51,30 +64,28 @@ const HomePage = () => {
             value={searchName}
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <button onClick={searchNotes} >🔎 Search</button>
+          <button onClick={searchNotes}>🔎 Search</button>
+          {message && <p className="no-result">{message}</p>}
           <br /><br />
           <Link to="/add-note" className="add-btn" onClick={() => setMenuOpen(false)}>➕ Add Note</Link>
         </div>
       </section>
 
       <section className="notes">
-        {notes.length > 0 ? (
+        {notes.length > 0 && (
           <div className="notes-grid">
             {notes.map((note) => (
-            <div
-            key={note._id}
-            className="note-card"
-            style={{ backgroundColor: note.color }}
-          >
-            <h3>👤 To: {note.name}</h3>
-            <hr className="divider" />
-            <p>📝 {note.note}</p>
-          </div>
-          
+              <div
+                key={note._id}
+                className="note-card"
+                style={{ backgroundColor: note.color || getPastelColor(note.name) }}
+              >
+                <h3>👤 To: {note.name}</h3>
+                <hr className="divider" />
+                <p>📝 {note.note}</p>
+              </div>
             ))}
           </div>
-        ) : (
-          <p className="no-result">😕 No notes found for this name.</p>
         )}
       </section>
 
