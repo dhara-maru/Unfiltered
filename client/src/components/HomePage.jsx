@@ -52,6 +52,8 @@ const HomePage = () => {
             onChange={(e) => setSearchName(e.target.value)}
           />
           <button onClick={searchNotes} >🔎 Search</button>
+          <br /><br />
+          <Link to="/add-note" className="add-btn" onClick={() => setMenuOpen(false)}>➕ Add Note</Link>
         </div>
       </section>
 
