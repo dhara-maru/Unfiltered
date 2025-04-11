@@ -50,7 +50,9 @@ const searchNotes = async () => {
   return (
     <>
       <header className="navbar">
-        <Link to="/" className="logo">💌 Unfiltered</Link>
+      <Link to="/" className="logo" style={{ textDecoration: "none", color: "inherit", fontWeight: "bold", fontSize: "1.5rem" }}>
+  💌 Unfiltered
+</Link>
         <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
           <span></span><span></span><span></span>
         </div>
