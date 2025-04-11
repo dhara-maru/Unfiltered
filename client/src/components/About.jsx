@@ -15,7 +15,9 @@ const About = () => {
   return (
     <>
       <header className="navbar">
-        <Link to="/" className="logo">💌 Unfiltered</Link>
+       <Link to="/" className="logo" style={{ textDecoration: "none", color: "inherit", fontWeight: "bold", fontSize: "1.5rem" }}>
+  💌 Unfiltered
+</Link>
         <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
           <span></span><span></span><span></span>
         </div>
@@ -60,7 +62,7 @@ const About = () => {
       </section>
 
       <footer className="footer">
-        <div className="footer-col"><h3>💌 Unfiltered</h3></div>
+        <Link to="/" style={{ textDecoration: "none", color: "black !important" }} className="footer-col"><h3>💌 Unfiltered</h3></Link>
         <div className="footer-col"><p>A safe place to express thoughts anonymously.</p></div>
         <div className="footer-col">
           <Link to="/">Home</Link>
