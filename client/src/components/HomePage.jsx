@@ -13,7 +13,7 @@ const HomePage = () => {
   }, [darkMode]);
 
   const searchNotes = async () => {
-    const response = await fetch(`/api/notes/${searchName}`);
+    const response = await fetch(`https://unfilteredbackend.onrender.com/api/notes/${searchName}`);
     const data = await response.json();
     setNotes(data);
   };
