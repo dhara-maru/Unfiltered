@@ -18,11 +18,12 @@ const AddNote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("/api/notes", {
+    const response = await fetch("https://unfilteredbackend-dfeg.onrender.com/api/notes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, note, color }),
     });
+    
 
     if (response.ok) {
       setMessage("🎉 Note added successfully!");
