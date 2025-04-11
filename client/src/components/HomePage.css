@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+button{
+  font-family: 'Poppins', sans-serif !important;
+}
+.light {
+  background: #fff;
+  color: #111;
+}
+input::placeholder,
+textarea::placeholder {
+  font-family: 'Poppins', sans-serif !important; 
+  font-size: 16px;
+  font-style: italic;
+  color: #999; 
+}
+
+.dark {
+  background: #111;
+  color: #fff;
+}
+
+.navbar {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: inherit;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+}
+
+.add-btn {
+  background: #e54673;
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: white !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin: 20px 0;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: 20px auto 0;
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+.search-bar button {
+  padding: 10px;
+  background: #e54673;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.notes {
+  padding: 40px 20px;
+}
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+  }
+  
+  
+
+  .note-card {
+    width: 90%;
+    max-width: 400px;
+    height: 250px;
+    padding: 20px;
+    border-radius: 12px;
+    color: #000;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background: #fff;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .note-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+
+/* note content split */
+.note-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.note-card p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+
+.divider {
+    border: 0;
+    border-top: 1.5px dashed #333;
+    margin: 6px 0;
+  }
+  
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.no-result {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+.footer {
+  background: #000;
+  color: black !important;
+  padding: 30px 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: black !important;
+  text-decoration: none;
+  display: block;
+  margin: 5px 0;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: currentColor;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: inherit;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    padding: 20px;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .notes-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  
+  .nav-links.show {
+    display: flex;
+    animation: fadeSlide 0.4s ease-in-out forwards;
+    border-radius: 53px;
+    background: white;
+    box-shadow: 0px 9px 7px 0px #8080803b;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
