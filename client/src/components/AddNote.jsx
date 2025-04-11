@@ -26,11 +26,11 @@ const AddNote = () => {
 
     if (response.ok) {
       setMessage("🎉 Note added successfully!");
-      setMessageColor("#d4f5c7"); // soft green
+      setMessageColor("#d4f5c7");
       setName("");
       setNote("");
 
-      // Hide the alert after 3 seconds
+    
       setTimeout(() => {
         setMessage("");
       }, 3000);
