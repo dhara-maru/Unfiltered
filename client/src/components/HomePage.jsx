@@ -13,23 +13,33 @@ const HomePage = () => {
     document.body.className = darkMode ? "dark" : "light";
   }, [darkMode]);
 
-  const searchNotes = async () => {
-    if (searchName.trim() === "") {
-      setNotes([]);
-      setMessage("⚠️ Please enter a name to search.");
-      return;
-    }
+const searchNotes = async () => {
+  if (searchName.trim() === "") {
+    setNotes([]);
+    setMessage("⚠️ Please enter a name to search.");
+    return;
+  }
 
-    try {
-      const response = await fetch(`https://unfilteredbackend-dfeg.onrender.com/api/notes/${searchName}`);
-      const data = await response.json();
+  try {
+    const response = await fetch(`https://unfilteredbackend-dfeg.onrender.com/api/notes/${searchName}`);
+    const data = await response.json();
+
+    // Ensure data is an array
+    if (Array.isArray(data)) {
       setNotes(data);
       setMessage(data.length === 0 ? "😕 No notes found for this name." : "");
-    } catch (error) {
-      setNotes([]);
-      setMessage("🚫 Something went wrong. Please try again.");
+    } else {
+      // If backend returned a single note object instead of array
+      setNotes([data]);
+      setMessage("");
     }
-  };
+  } catch (error) {
+    console.error("Fetch error:", error);
+    setNotes([]);
+    setMessage("🚫 Something went wrong. Please try again.");
+  }
+};
+
 
   const getPastelColor = (key) => {
     const pastelColors = ["#FFB3BA", "#FFDFBA", "#FFFFBA", "#BAFFC9", "#BAE1FF", "#E1BAFF"];
