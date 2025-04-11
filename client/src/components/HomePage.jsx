@@ -12,27 +12,10 @@ const HomePage = () => {
     document.body.className = darkMode ? "dark" : "light";
   }, [darkMode]);
 
-  useEffect(() => {
-    // Load all notes initially
-    fetchNotes();
-  }, []);
-
-  const fetchNotes = async () => {
-    try {
-      const endpoint = searchName.trim()
-        ? `https://unfilteredserver.onrender.com/api/notes/${searchName}`
-        : `https://unfilteredserver.onrender.com/api/notes`;
-  
-      const response = await fetch(endpoint);
-      const data = await response.json();
-      setNotes(data);
-    } catch (err) {
-      console.error("❌ Failed to fetch notes:", err);
-    }
-  };
-
-  const handleSearch = () => {
-    fetchNotes();
+  const searchNotes = async () => {
+    const response = await fetch(`/api/notes/${searchName}`);
+    const data = await response.json();
+    setNotes(data);
   };
 
   const getPastelColor = (key) => {
@@ -68,24 +51,24 @@ const HomePage = () => {
             value={searchName}
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <button onClick={handleSearch}>🔎 Search</button>
-        </div><br /><br />
-        <Link to="/add-note" className="add-btn" onClick={() => setMenuOpen(false)}>➕ Add Note</Link>
+          <button onClick={searchNotes} >🔎 Search</button>
+        </div>
       </section>
 
       <section className="notes">
         {notes.length > 0 ? (
           <div className="notes-grid">
             {notes.map((note) => (
-              <div
-                key={note._id}
-                className="note-card"
-                style={{ backgroundColor: note.color || getPastelColor(note.name) }}
-              >
-                <h3>👤 To: {note.name}</h3>
-                <hr className="divider" />
-                <p>📝 {note.note}</p>
-              </div>
+            <div
+            key={note._id}
+            className="note-card"
+            style={{ backgroundColor: note.color }}
+          >
+            <h3>👤 To: {note.name}</h3>
+            <hr className="divider" />
+            <p>📝 {note.note}</p>
+          </div>
+          
             ))}
           </div>
         ) : (
