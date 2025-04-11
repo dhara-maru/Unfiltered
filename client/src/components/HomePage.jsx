@@ -102,7 +102,7 @@ const searchNotes = async () => {
       </section>
 
       <footer className="footer">
-        <div className="footer-col"><h3>💌 Unfiltered</h3></div>
+        <Link to="/" style={{ textDecoration: "none", color: "black !important"}} className="footer-col"><h3>💌 Unfiltered</h3></Link>
         <div className="footer-col"><p>A safe place to express thoughts anonymously.</p></div>
         <div className="footer-col">
           <Link to="/">Home</Link>
