@@ -21,7 +21,7 @@ const searchNotes = async () => {
   }
 
   try {
-    const response = await fetch(`https://unfilteredbackend-dfeg.onrender.com/api/notes/${searchName}`);
+    const response = await fetch(`https://unfilteredb.onrender.com/api/notes/${searchName}`);
     const data = await response.json();
 
     // Ensure data is an array
