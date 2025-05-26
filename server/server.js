@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://rekhta-mern:rekhtamerndhara@cluster0.s3zyd.mongo
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
 app.use(cors({
-  origin: 'https://unfilteredfrontend2.onrender.com',
+  origin: 'https://unfilteredf.onrender.com',
   methods: ['GET', 'POST'],
 }));
 
